@@ -1,0 +1,31 @@
+en-text
+Copyright (c) 2026 Andrey Gavrilenko
+Licensed under the MIT License.
+
+This corpus restates, in its own words, writing advice developed by others.
+Ideas and principles are not copyrightable; no passage from any book cited in
+skills/en-text/references/sources.md is reproduced here.
+
+The following openly licensed works contributed conventions to this corpus and
+are attributed as their licences require:
+
+1. Federal Plain Language Guidelines; plainlanguage.gov
+   Plain Language Action and Information Network (PLAIN) and the U.S. General
+   Services Administration. Public domain / CC0 1.0 Universal.
+   https://www.plainlanguage.gov/
+
+2. 18F Content Guide
+   U.S. General Services Administration. Public domain (17 U.S.C. 105).
+   https://content-guide.18f.gov/
+
+3. Google developer documentation style guide
+   Copyright Google LLC. Licensed under CC BY 4.0.
+   https://developers.google.com/style
+   Changes: conventions were summarized and reworded; no text is reproduced.
+
+4. GOV.UK style guide
+   Crown copyright. Licensed under the Open Government Licence v3.0.
+   https://www.gov.uk/guidance/style-guide
+
+No code from Vale, proselint, write-good, alex, stop-slop, or ru-text is
+included in this project.

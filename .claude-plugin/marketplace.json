@@ -1,0 +1,23 @@
+{
+  "name": "en-text",
+  "metadata": {
+    "description": "English text quality for AI agents — AI-slop cleanup, clarity, sentence mechanics, usage, editorial standards. Scores text 0-10.",
+    "version": "0.1.0"
+  },
+  "owner": {
+    "name": "Andrey Gavrilenko",
+    "url": "https://github.com/andrgavrilenko"
+  },
+  "plugins": [
+    {
+      "name": "en-text",
+      "displayName": "en-text",
+      "source": "./",
+      "version": "0.1.0",
+      "description": "English text quality for AI agents — AI-slop cleanup, clarity, sentence mechanics, usage, editorial standards. Scores text 0-10. Every finding cites the rule behind it.",
+      "category": "productivity",
+      "homepage": "https://github.com/andrgavrilenko/en-text",
+      "tags": ["english", "ai-slop", "writing", "editing", "plain-language", "text-quality"]
+    }
+  ]
+}

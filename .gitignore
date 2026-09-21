@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+*.swp
+.vale.ini
+styles/
+node_modules/
