@@ -60,7 +60,16 @@ say so in an issue and we will link it from the README.
 
 ## Testing a change
 
-There is no test suite: the corpus is prose. Before opening a PR, run your new rule
-against the example in `examples/before-after.md` and against two texts of your own,
-one that should trigger it and one that should not. Paste both results in the PR
-description.
+Two layers.
+
+**Structure is checked by machine.** Run `python tests/check_corpus.py` before
+opening a PR. It fails on a duplicate or skipped rule ID, a cited ID that does not
+exist, a clarity or slop rule missing its test, fix, or exception, scoring weights
+that do not sum to 1.0, a worked score whose total does not follow from its
+sub-scores, and repo prose that fails its own slop threshold. CI runs the same
+script on every push.
+
+**Judgment is checked by hand.** Run your new rule against the fixtures in
+`tests/fixtures/` and against two texts of your own, one that should trigger it and
+one that should not. Paste both results in the PR description. `tests/EVAL.md`
+lists what each fixture is expected to produce.

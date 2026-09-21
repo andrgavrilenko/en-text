@@ -25,9 +25,9 @@ A product update, 148 words, of the kind a model produces from a one-line brief.
 ## Findings
 
 ```
-Reviewed as: product update, US spelling, no house style. 148 words.
+Reviewed as: product update, US spelling, no house style, marketing weights. 148 words.
 
-READS AS AI  (19 tells in 148 words — unmistakable)
+READS AS AI  (23 weighted tells in 148 words, 47 per 300: unmistakable)
   [S7]  "In today's fast-paced development landscape" — scene-setting opener.
         → Delete the sentence. The update starts at the caching layer.
   [S16] Three bullets, each a bolded label plus one line, all the same length.
@@ -37,10 +37,12 @@ READS AS AI  (19 tells in 148 words — unmistakable)
         → Name the one reader. A solo developer does not care about team scaling.
   [S12] "In conclusion" plus "The possibilities are endless."
         → Delete the whole closing paragraph.
-  [S1]  leveraged, lightning-fast, robust, seamless, comprehensive, empower,
-        unwavering, effortlessly, significantly, crucial, truly.
-  [S13] "underscores our unwavering commitment" — announces that a fact matters
-        instead of reporting one.
+  [S1]  leveraged, robust, seamless, comprehensive, empower, unwavering,
+        crucial, underscores.
+  [S3]  incredibly, effortlessly, significantly, truly.
+  [S5]  "lightning-fast response times" — modifier in place of a number.
+  [S13] "underscores our unwavering commitment", "the results speak for themselves"
+        — announce that a fact matters instead of reporting one.
 
 SENTENCE LEVEL
   [C1]  "The implementation of these changes was completed by our engineering team"
@@ -50,12 +52,18 @@ SENTENCE LEVEL
         → Give the numbers. This is the whole content of the update.
   [C17] "That's why we're incredibly excited to announce" — metadiscourse.
 
-Score: 2.1 / 10
-  Sentence clarity 4.0 | Flow 3.5 | Human voice 0.5 | Correctness 8.0 | Precision 1.0
+Score: 2.8 / 10
+  Sentence clarity 4.0 | Flow 3.5 | Human voice 0.5 | Correctness 9.0 | Precision 1.0
 ```
 
-Correctness scores 8.0 because nothing here is ungrammatical. That is the point: a
-text can be error-free and still tell the reader nothing.
+The count: 13 vocabulary and intensifier tells, 6 phrase-level tells, and 2
+structural rules (S15, S16) that count double, for 23. Correctness scores 9.0
+because nothing here is ungrammatical. That is the point: a text can be error-free
+and still tell the reader nothing.
+
+The arithmetic, with marketing weights (0.25 / 0.15 / 0.35 / 0.10 / 0.15):
+4.0 × 0.25 + 3.5 × 0.15 + 0.5 × 0.35 + 9.0 × 0.10 + 1.0 × 0.15 = 2.75, reported
+as 2.8.
 
 ## After
 
@@ -78,9 +86,11 @@ short one, and did not chop everything into punchy fragments. Flattening is its 
 failure mode.
 
 ```
-Score: 8.2 / 10
-  Sentence clarity 8.5 | Flow 8.0 | Human voice 9.0 | Correctness 8.5 | Precision 7.5
+Score: 8.5 / 10
+  Sentence clarity 8.5 | Flow 8.0 | Human voice 9.0 | Correctness 9.0 | Precision 7.5
 ```
 
-Precision stays at 7.5 because "largest on read-heavy workloads" is still vague, and
-"tell us what breaks" gives no channel. Eights are good. Nines are rare.
+Same weights: 8.5 × 0.25 + 8.0 × 0.15 + 9.0 × 0.35 + 9.0 × 0.10 + 7.5 × 0.15 = 8.45,
+reported as 8.5. Precision stays at 7.5 because "largest on read-heavy workloads" is
+still vague, and "tell us what breaks" gives no channel. Eights are good. Nines are
+rare.

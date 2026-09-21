@@ -73,7 +73,7 @@ Load only what the task needs. Each file stands alone.
 | File | Load when |
 |---|---|
 | `references/clarity.md` | Any editing task. Sentence and paragraph mechanics: subjects, verbs, nominalizations, old-to-new flow, stress position, sentence length, cohesion. Rule IDs `C1`–`C22`. |
-| `references/slop.md` | Any text that might have been drafted by a model, or that must not read as if it was. Banned words, template phrases, structural tells, punctuation tells. Rule IDs `S1`–`S24`. |
+| `references/slop.md` | Any text that might have been drafted by a model, or that must not read as if it was. Vocabulary tells, template phrases, structural tells, punctuation tells. Rule IDs `S1`–`S24`. |
 | `references/usage.md` | Proofreading, or when a specific word, punctuation mark, number, or capital is in question. Rule IDs `U1`–`U28`. |
 | `references/scoring.md` | Only for `en-score`. The five dimensions and how a number is derived. |
 | `references/sources.md` | When a user asks where a rule comes from. |
@@ -83,7 +83,7 @@ Load only what the task needs. Each file stands alone.
 No single tell proves anything. *Delve* appears in books published in 1890. A
 tricolon is a figure of speech with a 2000-year pedigree. What marks text as
 machine-made is **how many tells appear per hundred words, and how evenly they are
-spaced**. One *leverage* in a 900-word post is a word choice. Four banned words,
+spaced**. One *leverage* in a 900-word post is a word choice. Four vocabulary tells,
 two tricolons, and a bolded bullet list in 300 words is a fingerprint.
 
 So: count, then judge. Report a tell as a finding when it is one of a cluster, or

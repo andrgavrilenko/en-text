@@ -54,20 +54,20 @@ with attribution:
 
 Worth knowing about, and worth using alongside this corpus:
 
-- **proselint** (BSD) — a prose linter whose modules encode advice from Garner,
+- **proselint** (BSD): a prose linter whose modules encode advice from Garner,
   Pinker, Orwell, and others. Deterministic where this corpus is judgmental.
-- **Vale** (MIT) — a configurable prose linter with packages implementing the
+- **Vale** (MIT): a configurable prose linter with packages implementing the
   Microsoft and Google style guides.
-- **write-good** and **alex** (MIT) — narrow linters for weak constructions and for
+- **write-good** and **alex** (MIT): narrow linters for weak constructions and for
   insensitive wording.
-- **hardikpandya/stop-slop** — the skill that made "AI tells" a category people
+- **hardikpandya/stop-slop**: the skill that made "AI tells" a category people
   actively edit for.
-- **talkstream/ru-text** — the same idea for Russian, and the reason this project
+- **talkstream/ru-text**: the same idea for Russian, and the reason this project
   exists. `en-text` shares no code or text with it.
 
 ## What we are not
 
 This is not a grammar checker, not a fact checker, and not a plagiarism detector. It
 has no opinion about whether a text was written by a machine, only about whether it
-reads like one — and those are different questions. A human can write slop; a model
-can write well.
+reads like one. Those are different questions. A human can write slop; a model can
+write well.

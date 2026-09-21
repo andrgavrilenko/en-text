@@ -19,7 +19,7 @@ in the conversation. If $ARGUMENTS names a file or a glob, read those files.
 
 ## Where the corpus lives
 
-Find a directory named `references` whose parent directory is named `en-text` — it
+Find a directory named `references` whose parent directory is named `en-text`. It
 sits next to this skill, typically at `../en-text/references/`. Read `scoring.md`
 first; it governs everything below. Read `slop.md` for the density table, and
 `clarity.md` and `usage.md` as needed to identify what you are counting.
@@ -35,7 +35,8 @@ en-text score.
    genre shifts them, say which weights you used and why.
 3. **Score each dimension** against its anchor table. Count instances before
    assigning a number; do not score by impression.
-4. **Combine** with the weights and report to one decimal.
+4. **Combine** with the weights and report to one decimal. Show the arithmetic to
+   yourself before printing: the total must follow from the sub-scores.
 5. **Name the three findings that cost the most points**, each with its rule ID.
 
 ## Output
@@ -43,7 +44,7 @@ en-text score.
 ```
 Reviewed as: engineering blog post, US spelling, default weights. 840 words.
 
-Score: 6.4 / 10
+Score: 6.1 / 10
 
   Sentence clarity       5.5   ██████░░░░
   Flow and cohesion      7.0   ███████░░░
@@ -66,7 +67,7 @@ Cheapest 2 points: rewrite the bullet list as prose and fix the empty verbs.
 - **Never report a number without findings.** A bare score is theater.
 - **Do not reward length, vocabulary, or formatting effort.** A 90-word answer that
   lands can score 10.
-- **State your assumptions** — genre, weights, spelling variant, house style — in
-  the line above the score. They change the number, so the reader must see them.
+- **State your assumptions** (genre, weights, spelling variant, house style) in the
+  line above the score. They change the number, so the reader must see them.
 - **Never edit the file.** This skill reports; it does not rewrite. If the user
   wants the text fixed, point them at `en-check`.

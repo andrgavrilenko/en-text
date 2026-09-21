@@ -17,19 +17,30 @@ theater.
 
 ## The five dimensions
 
-| # | Dimension | Weight | Rules |
-|---|---|---|---|
-| 1 | Sentence clarity | 0.25 | `C1`–`C7`, `C14`–`C18` |
-| 2 | Flow and cohesion | 0.20 | `C8`–`C13` |
-| 3 | Human voice | 0.25 | `S1`–`S24` |
-| 4 | Correctness | 0.15 | `U1`–`U28` |
-| 5 | Precision for the reader | 0.15 | `C19`–`C22`, `S2`, `S6`, `S13` |
+| # | Dimension | Rules |
+|---|---|---|
+| 1 | Sentence clarity | `C1`–`C7`, `C14`–`C18` |
+| 2 | Flow and cohesion | `C8`–`C13` |
+| 3 | Human voice | `S1`–`S24` |
+| 4 | Correctness | `U1`–`U28` |
+| 5 | Precision for the reader | `C19`–`C22`, `S2`, `S6`, `S13` |
 
-Weights shift by genre, and you must say so when you shift them:
+## Weights
 
-- **Reference documentation:** correctness 0.25, human voice 0.15.
-- **Marketing and social copy:** human voice 0.35, correctness 0.10.
-- **Academic and legal:** correctness 0.25, precision 0.25, human voice 0.10.
+Each profile sums to 1.0. Use `default` unless the genre clearly matches another
+row, and name the profile you used in the line above the score.
+
+| Profile | Clarity | Flow | Voice | Correctness | Precision |
+|---|---|---|---|---|---|
+| default | 0.25 | 0.20 | 0.25 | 0.15 | 0.15 |
+| reference-docs | 0.25 | 0.20 | 0.15 | 0.25 | 0.15 |
+| marketing | 0.25 | 0.15 | 0.35 | 0.10 | 0.15 |
+| academic-legal | 0.25 | 0.15 | 0.10 | 0.25 | 0.25 |
+
+`reference-docs` covers API references, manuals, runbooks. `marketing` covers
+landing pages, product updates, social posts, sales email. `academic-legal` covers
+papers, contracts, policy. Everything else, including business email, blog posts,
+and internal memos, is `default`.
 
 ---
 
@@ -41,11 +52,14 @@ reader waiting (`C14`), split subject and verb (`C15`), metadiscourse (`C17`).
 
 | Score | Anchor |
 |---|---|
-| 9–10 | Under 0.5 findings per 100 words. Every sentence opens on its actor. |
+| 9–10 | Up to 1 finding per 100 words. Every sentence opens on its actor. |
 | 7–8 | 1–2 per 100. Occasional heavy sentence, nothing that needs rereading. |
-| 5–6 | 3–4 per 100. The reader rereads a sentence or two per page. |
-| 3–4 | 5–7 per 100. Actors routinely hidden; several sentences must be parsed twice. |
+| 5–6 | 2–4 per 100. The reader rereads a sentence or two per page. |
+| 3–4 | 4–7 per 100. Actors routinely hidden; several sentences must be parsed twice. |
 | 0–2 | Over 7 per 100. Official style throughout. Meaning has to be reconstructed. |
+
+Where a count sits on a boundary, the surrounding prose decides: a text whose heavy
+sentences are all in one paragraph scores higher than one where they are spread.
 
 ## 2. Flow and cohesion (weight 0.20)
 
@@ -63,7 +77,8 @@ position (`C9`), topic strings (`C10`), paragraph focus (`C11`), transitions
 
 ## 3. Human voice (weight 0.25)
 
-Use the density table in `slop.md`. Convert directly:
+Use the density table in `slop.md`. Normalize first (tells × 300 ÷ words of running
+prose), then convert:
 
 | Tells per 300 words | Score |
 |---|---|
@@ -113,7 +128,9 @@ scale (`S6`), inconsistent terminology (`C22`).
 ## Reporting format
 
 ```
-Score: 6.4 / 10   (business email, default weights)
+Reviewed as: business email, US spelling, default weights. 210 words.
+
+Score: 6.1 / 10
 
   Sentence clarity       5.5   ██████░░░░
   Flow and cohesion      7.0   ███████░░░
@@ -126,6 +143,10 @@ Costing the most:
   [S11] "Whether you're a founder or an engineer" addresses two audiences at once.
   [C4]  Six empty verb + nominalization pairs in 210 words.
 ```
+
+Check the arithmetic before you print it: 5.5 × 0.25 + 7.0 × 0.20 + 4.0 × 0.25 +
+8.5 × 0.15 + 7.0 × 0.15 = 6.1. A total that does not follow from the sub-scores is
+the fastest way to lose a reader's trust in every other number.
 
 ## Honesty rules
 

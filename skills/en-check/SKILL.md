@@ -85,7 +85,7 @@ SENTENCE LEVEL
        → "According to the benchmark in appendix B, throughput tripled."
        The stress position holds an administrative detail instead of the result.
 
-READS AS AI  (7 tells in 840 words — noticeable to an attentive reader)
+READS AS AI  (7 tells in 840 words, 2.5 per 300: suspicious, not yet a fingerprint)
   [S16] Six bullets, each opening with a bolded label, each one line long.
         → Two of these are argument; make them paragraphs. The rest is a table.
 

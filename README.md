@@ -23,14 +23,24 @@ of with someone's taste.
 
 ## Install
 
+Inside a Claude Code session:
+
 ```
 /plugin marketplace add andrgavrilenko/en-text
 /plugin install en-text@en-text
 ```
 
+Or from a terminal:
+
+```bash
+claude plugin marketplace add andrgavrilenko/en-text
+claude plugin install en-text@en-text
+```
+
 Works in Claude Code (CLI and desktop app). The skills are plain markdown with no
-runtime, so they also work by dropping `skills/` into any agent that reads
-`SKILL.md` files.
+runtime, so they also work by copying the whole `skills/` folder into any agent
+that reads `SKILL.md` files. Keep the three skill folders together: `en-check` and
+`en-score` read the corpus from `../en-text/references/`.
 
 ## Use
 
@@ -46,12 +56,14 @@ they take the last English text in the conversation.
 
 ## What is in the corpus
 
-74 rules, each with a test you can run on a sentence, a fix, and its limits.
+74 rules. The 46 clarity and slop rules each carry a test you can run on a
+sentence, a fix, and a stated exception. The 28 usage rules are conventions, and
+say which choice to hold rather than which is right.
 
 | File | Rules | Covers |
 |---|---|---|
 | `clarity.md` | `C1`–`C22` | Characters as subjects, actions as verbs, nominalizations, the paramedic method, when the passive earns its place, old-before-new, stress position, topic strings, sentence length, parallelism |
-| `slop.md` | `S1`–`S24` | Banned vocabulary, template phrases, the rule of three, bolded bullet headers, uniform paragraph length, rhetorical-question openers, em dash density, title formulas |
+| `slop.md` | `S1`–`S24` | Model-favored vocabulary, template phrases, the rule of three, bolded bullet headers, uniform paragraph length, rhetorical-question openers, em dash density, title formulas |
 | `usage.md` | `U1`–`U28` | Punctuation, confusables, numbers, dates, capitals, inclusive wording, US vs UK, list and link mechanics |
 | `scoring.md` | — | Five weighted dimensions with anchor tables |
 | `sources.md` | — | Where every rule comes from |
@@ -99,6 +111,22 @@ Strunk, and Fowler; the conventions come from plainlanguage.gov (public domain),
 The idea of packaging a language's editorial tradition as an agent skill comes from
 [`talkstream/ru-text`](https://github.com/talkstream/ru-text), which does this for
 Russian. `en-text` shares no code or text with it.
+
+## Tests
+
+The corpus is prose, but its structure is checked by machine. `tests/check_corpus.py`
+(standard library only) verifies that rule IDs are sequential and unique, that
+every ID cited anywhere in the repo exists, that every clarity and slop rule has a
+test, a fix, and an exception, that the scoring weights sum to 1.0, that every
+worked score follows from its sub-scores, and that the repo's own prose passes its
+own slop density threshold. It runs on every push.
+
+```bash
+python tests/check_corpus.py
+```
+
+`tests/fixtures/` holds texts with known findings for checking the skills by hand.
+See [tests/EVAL.md](tests/EVAL.md).
 
 ## Contributing
 
