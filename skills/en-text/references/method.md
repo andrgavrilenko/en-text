@@ -30,6 +30,13 @@ A reviewer who confidently misattributes sends the writer hunting through their 
 change for something that was always there, and the error spreads doubt onto the
 findings that were correct.
 
+There is a middle case worth handling well. The request names which spans changed,
+and a pattern lines up with exactly those spans. That inference is worth stating and
+it is still not evidence. Describe what you observed and let the writer draw the
+conclusion: "the four you named share a shape the other two lack" beats "your
+rewrite left the other two stranded." The first survives being wrong about which
+spans you actually changed; the second does not.
+
 ### M2 — Cross-reference findings need source-level text
 
 Claims about which label sits beside which value, what order items appear in, or

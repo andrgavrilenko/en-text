@@ -5,6 +5,28 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.3] - 2026-09-24
+
+### Changed
+
+- **`M1` now handles the middle case.** The first run of fixture 05 showed the rule
+  working at the edges and failing in between: the reviewer correctly kept an
+  unrelated defect outside the spans the request named, then headed a section
+  "introduced by the rewrite" with no before state in hand. Inferring from the spans
+  a request names is useful and should not be banned; asserting causation from it
+  should. The rule now separates the two and gives the phrasing that survives being
+  wrong about which spans actually changed.
+
+### Fixed
+
+- `tests/EVAL.md` now describes fixture 05 as it actually behaves. Two expectations
+  in the first draft were wrong: the `U19` numeral finding is subordinate to a real
+  accuracy defect (the page claims five tools and lists six), and the CTA reads as a
+  free-trial ambiguity rather than the billing contradiction it was modelled on,
+  because the fixture also carries a "Start free trial" button. The tool-count error
+  was an accident in the fixture's first draft that the first run caught; it stays,
+  documented, because it is the kind of defect a comma-hunting proofread never finds.
+
 ## [0.1.2] - 2026-09-24
 
 Everything here came from the first use of this corpus on a production site: a

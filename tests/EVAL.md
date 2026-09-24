@@ -125,11 +125,14 @@ whether my rewrite introduced any problems.
 
 | Must report | Span |
 |---|---|
-| `M2` framing | The frame line must say this is a rendering, not source, and name what that costs |
-| `M1` | The request claims a recent rewrite; with no before state, findings must be reported without attributing them to it |
+| `M2` framing | The frame line must say this is a rendering rather than source, and name what that costs |
+| accuracy | "Basic covers 2 tools, Team all 5" and "Five tools sharing one event schema" against the six tools the page then lists. Two counts, both wrong, and the one finding on this page that costs money |
 | `U2` | "Export before then if you need them, the Scheduled Export tool keeps working until the last day." |
-| billing contradiction | "Get the Team plan for 30 days. Cancel anytime from the billing page." against a Monthly subscription, the same defect the corpus was built to catch |
-| `U19` | "Basic covers 2 tools, Team all 5" mixes digits with the spelled-out counts in the prose above |
+| CTA ambiguity | "Get the Team plan for 30 days" under a button reading "Start free trial", with a Monthly billing toggle above. The sentence never says the 30 days are free and never says the plan is a subscription |
+
+| Must report, and how | |
+|---|---|
+| `M1` | The request claims a recent rewrite with no before state attached. Findings may say a pattern lines up with the named spans; they may not say the rewrite caused it. "The four you named share a shape the other two lack" passes. A section titled "introduced by the rewrite" does not. |
 
 | Must not report | Why |
 |---|---|
@@ -147,6 +150,12 @@ produced a confident headline finding that four product descriptions were shifte
 one row. They were not. The finding was an artifact of exactly this conversion, and
 it survived into a report to the site's owner. `M2` is the rule that would have
 stopped it.
+
+**A note on the tool count.** The mismatch between "five tools" and the six listed
+was not planted; it was a mistake in the first draft of this fixture, and the first
+run caught it. It stays, because an accuracy trap a reviewer must notice is worth
+more than a tidy fixture, and because it is the kind of defect that survives every
+proofread aimed at commas.
 
 ## Recording a run
 
@@ -170,6 +179,18 @@ Both are the corpus behaving as written, so the bands moved, not the rules.
 | 02-official-style | en-score | 5.3 (default). Clarity 1.5, voice 6.5. All 7 must-report rules found; "was affected" correctly cleared; `S4` fired on the two frames. | pass |
 | 03-clean-human | en-check | 0 findings. `S8`, `S21`, `S15`, `C11`, `C22` each considered and cleared with the exception named. | pass |
 | 04-mixed-conventions | en-check | `U2` ×2, `U28` (reported as a mixture, US default named), `U1`, `U23`, `U15`. No `S` findings. | pass |
+
+### 2026-09-24, corpus 0.1.2, Claude Opus 5 via Claude Code
+
+First run of fixture 05, the run that `method.md` was written for.
+
+| Fixture | Skill | Result | Verdict |
+|---|---|---|---|
+| 05-flattened-rendering | en-check | `M2` held completely: the duplicate descriptions were identified as a flattening artifact and no shift was asserted; the absent prices were not reported missing; `S16` was considered and cleared on its stated exception. Found the tool-count error, which the fixture's author had not. `M1` held in part: the `U2` splice was correctly filed outside the named spans, but a section was headed "introduced by the rewrite" with no before state. | partial |
+
+That partial is what produced the `M1` refinement in 0.1.3: inference from the
+spans the request names is worth stating, and must be phrased as observation rather
+than as a claim about what the writer did.
 
 One thing this run exposed that is not a corpus issue: after `claude plugin
 update`, a running session still resolves the skill from the old cache path until
