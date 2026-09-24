@@ -56,15 +56,16 @@ they take the last English text in the conversation.
 
 ## What is in the corpus
 
-74 rules. The 46 clarity and slop rules each carry a test you can run on a
-sentence, a fix, and a stated exception. The 28 usage rules are conventions, and
-say which choice to hold rather than which is right.
+78 rules. The 50 clarity, slop and method rules each carry a test you can run, a
+fix, and a stated exception. The 28 usage rules are conventions, and say which
+choice to hold rather than which is right.
 
 | File | Rules | Covers |
 |---|---|---|
 | `clarity.md` | `C1`–`C22` | Characters as subjects, actions as verbs, nominalizations, the paramedic method, when the passive earns its place, old-before-new, stress position, topic strings, sentence length, parallelism |
 | `slop.md` | `S1`–`S24` | Model-favored vocabulary, template phrases, the rule of three, bolded bullet headers, uniform paragraph length, rhetorical-question openers, em dash density, title formulas |
 | `usage.md` | `U1`–`U28` | Punctuation, confusables, numbers, dates, capitals, inclusive wording, US vs UK, list and link mechanics |
+| `method.md` | `M1`–`M4` | How to run the review: attributing a finding, what a rendered page cannot prove, finding the house style, and when a difference is not an inconsistency |
 | `scoring.md` | — | Five weighted dimensions with anchor tables |
 | `sources.md` | — | Where every rule comes from |
 
@@ -88,6 +89,12 @@ sentence and paragraph mechanics that predate the whole problem.
 every figure of speech, cutting real qualifiers because they looked like hedging,
 and swapping one dialect for another dialect of short punchy fragments. A voice is
 not an error.
+
+**It knows what it cannot see.** `method.md` stops the three confident mistakes a
+prose reviewer makes: blaming your last edit for something that was always there,
+claiming two lists disagree when all you have is a flattened copy of a table, and
+calling a difference an inconsistency before collecting every instance. Each of
+those rules was written after a real review got it wrong.
 
 ## Not a linter
 

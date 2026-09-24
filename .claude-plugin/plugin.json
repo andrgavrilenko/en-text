@@ -1,7 +1,7 @@
 {
   "name": "en-text",
   "displayName": "en-text",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "English text quality for AI agents — AI-slop cleanup, clarity, sentence mechanics, usage, editorial standards. Scores text 0-10. Every finding cites the rule behind it.",
   "author": {
     "name": "Andrey Gavrilenko",

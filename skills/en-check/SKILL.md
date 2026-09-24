@@ -24,18 +24,24 @@ alongside it. Locate the folder once, then read from it:
 
 - Find a directory named `references` whose parent directory is named `en-text`.
   It sits next to this skill, typically at `../en-text/references/`.
-- Read `clarity.md`, `slop.md`, and `usage.md`. Read `scoring.md` only if the user
-  also asked for a number.
+- Read `clarity.md`, `slop.md`, `usage.md`, and `method.md`. Read `scoring.md` only
+  if the user also asked for a number.
 
 If you cannot find the corpus, say so and stop. Do not improvise rules from memory
 and present them as en-text findings.
 
 ## Procedure
 
-**1. Frame the text.** Before reading for errors, settle four things and state them
-in one line: genre, audience, spelling variant (`U28`), and whether a house style
-applies. Every later judgment depends on these. A landing page and an RFC do not
-get the same review.
+**1. Frame the text.** Before reading for errors, settle five things and state them
+in one line: genre, audience, spelling variant (`U28`), whether a house style
+applies (go look for one, `M3`), and whether the text is source or a rendering of it
+(`M2`). Every later judgment depends on these. A landing page and an RFC do
+not get the same review, and a fetched page cannot answer the questions a dictionary
+file can.
+
+If the request names recent edits and asks whether they broke anything, settle one
+more thing now: do you have a before state? If not, say so in the same line, and
+report findings without attributing them (`M1`).
 
 **2. Triage pass.** Read the whole text once without annotating. Note only:
 
@@ -61,6 +67,12 @@ they have.
 - The pattern is the author's established voice and costs the reader nothing.
 - It is a lone slop tell in a long, otherwise clean text (`slop.md` density table).
 - You cannot name the rule. A finding you cannot attribute is taste, not a finding.
+- It claims a specific edit introduced the problem and you have no before state
+  (`M1`). Keep the finding, drop the attribution.
+- It is about pairing, ordering, or agreement, and you are reading a rendering
+  rather than the source (`M2`). Report it as something to verify, not as a fact.
+- It is one difference that the document's own system explains (`M4`). Collect every
+  instance before calling anything inconsistent.
 
 **5. Report.**
 

@@ -108,6 +108,46 @@ should say "pick one", not "US is right".
 **Score band:** 6.0–7.5 with reference-docs weights. Correctness 4–6; every other
 dimension 8+.
 
+## `fixtures/05-flattened-rendering.md` — what a rendering cannot prove
+
+A pricing page fetched from the web and flattened into markdown, so the comparison
+table has lost its row structure. 320 words. This fixture tests `method.md`, and it
+is the only one where the right answer is partly a refusal.
+
+Invoke it with an attribution claim attached, because `M1` is half of what is being
+tested:
+
+```
+/en-text:en-check tests/fixtures/05-flattened-rendering.md — fetched from our
+pricing page. I rewrote the four alert and export descriptions yesterday; tell me
+whether my rewrite introduced any problems.
+```
+
+| Must report | Span |
+|---|---|
+| `M2` framing | The frame line must say this is a rendering, not source, and name what that costs |
+| `M1` | The request claims a recent rewrite; with no before state, findings must be reported without attributing them to it |
+| `U2` | "Export before then if you need them, the Scheduled Export tool keeps working until the last day." |
+| billing contradiction | "Get the Team plan for 30 days. Cancel anytime from the billing page." against a Monthly subscription, the same defect the corpus was built to catch |
+| `U19` | "Basic covers 2 tools, Team all 5" mixes digits with the spelled-out counts in the prose above |
+
+| Must not report | Why |
+|---|---|
+| A cross-reference finding asserting the Team tier's descriptions are shifted | The three descriptions under "03 Alerting and export" match the Tools section exactly. The fourth tool, Webhook Relay, has no description in the plan table, which in a real table is the header-row product carrying none. A flattened copy cannot distinguish that from a shift, so `M2` forbids the assertion. It may be raised as "verify in the source". |
+| "No price appears anywhere on the page" | Prices render at runtime and never reached this copy. Absent from the artifact, not from the page (`M2`). |
+| `C22` for "tools" vs "plans" vs "Basic/Team" | Distinct things: the products, the packages, the package names. |
+| Any `S` structural tell for the repeated three-item lists | The tiers genuinely have those counts, and the duplication between the table and the Tools section is a table, not a rhetorical shape. |
+
+**Score band:** not scored. Running `en-score` on this fixture should decline or
+heavily caveat, since a flattened rendering with missing runtime content cannot
+carry a repeatable number.
+
+**Why this fixture exists:** on 2026-09-21 a real review of a production site
+produced a confident headline finding that four product descriptions were shifted by
+one row. They were not. The finding was an artifact of exactly this conversion, and
+it survived into a report to the site's owner. `M2` is the rule that would have
+stopped it.
+
 ## Recording a run
 
 When you change a rule, paste the relevant findings for the affected fixture into

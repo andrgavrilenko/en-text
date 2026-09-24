@@ -5,6 +5,54 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 2026-09-24
+
+Everything here came from the first use of this corpus on a production site: a
+five-language marketing site with about 1,000 words of English copy. The corpus
+found nine real defects, including a billing contradiction that promised two
+incompatible cancellation models in one sentence. It also made three confident
+mistakes, and those are what this release is about.
+
+### Added
+
+- **`method.md`, rules M1-M4.** The first rules in this corpus about the review
+  rather than the prose. A finding can be correct about a sentence and still be
+  false, misattributed, or unprovable from what the reviewer was handed.
+- **`M1`, attribution needs evidence.** Asked "did my edits break anything", the
+  corpus twice answered that an edit had introduced a problem that predated it, once
+  as the headline of the report. It cannot see history; now it says so instead of
+  guessing, unless the request carries a before state.
+- **`M2`, cross-reference findings need source-level text.** The first review ran on
+  a markdown reconstruction of a rendered HTML table and reported that four product
+  descriptions had shifted by one row. They had not; the conversion had dropped the
+  row structure. Pairing, ordering, and agreement claims now require the source, and
+  content a rendering never received is no longer reported as missing.
+- **`M3`, find the house style before applying the default.** The review located the
+  project's own copy-review agent unprompted and applied its em dash ban, which
+  produced better findings than any default would have. Now it is a rule rather than
+  luck.
+- **`M4`, derive the document's own system before calling it inconsistent.** A file
+  mixing "four tools" with "7 days" looks inconsistent from two tokens and is
+  coherent from all of them: counts spelled out, durations in numerals. Collect every
+  instance first.
+- **`tests/fixtures/05-flattened-rendering.md` and its eval entry.** A flattened
+  pricing page carrying the exact trap that produced the false headline, invoked with
+  an attribution claim so `M1` and `M2` are both exercised. It is the only fixture
+  where part of the correct answer is a refusal.
+
+### Changed
+
+- `en-check` now settles five things in its frame line instead of four, including
+  whether it holds source or a rendering, and states up front when it has no before
+  state for an attribution claim.
+- Three new grounds for dropping a finding in the verify step: unprovable
+  attribution, structure claims from a rendering, and differences the document's own
+  system explains.
+- `en-score` states which artifact it scored and does not penalize writing for
+  content that never reached its copy.
+- `check_corpus.py` covers the `M` prefix: sequence, citations, and the test, fix and
+  exception requirement now apply to method rules too.
+
 ## [0.1.1] - 2026-09-21
 
 ### Fixed

@@ -75,6 +75,7 @@ Load only what the task needs. Each file stands alone.
 | `references/clarity.md` | Any editing task. Sentence and paragraph mechanics: subjects, verbs, nominalizations, old-to-new flow, stress position, sentence length, cohesion. Rule IDs `C1`–`C22`. |
 | `references/slop.md` | Any text that might have been drafted by a model, or that must not read as if it was. Vocabulary tells, template phrases, structural tells, punctuation tells. Rule IDs `S1`–`S24`. |
 | `references/usage.md` | Proofreading, or when a specific word, punctuation mark, number, or capital is in question. Rule IDs `U1`–`U28`. |
+| `references/method.md` | Any review you are about to report. How to attribute a finding, what a rendered extraction cannot prove, where to look for a house style, and when a difference is not an inconsistency. Rule IDs `M1`–`M4`. |
 | `references/scoring.md` | Only for `en-score`. The five dimensions and how a number is derived. |
 | `references/sources.md` | When a user asks where a rule comes from. |
 
@@ -103,3 +104,13 @@ Unless the user asks for something else, a finding is three lines:
 Rule ID, the span as it appears, the proposed replacement, and one sentence naming
 what is wrong. No preamble, no summary of how much you improved the text, no
 encouragement.
+
+### What a finding may not claim
+
+Two limits, both from `references/method.md`, both cheap to honor and expensive to
+get wrong:
+
+- **Who introduced it.** Say a specific edit caused the problem only with a before
+  state in hand (`M1`). Otherwise report what is in the text now.
+- **What the structure is.** Pairing, ordering, and agreement between two places
+  need the source, not a rendering of it (`M2`).

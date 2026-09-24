@@ -138,8 +138,13 @@ def check_frontmatter():
 
 # ------------------------------------------------------------- 3 rule IDs
 
-RULE_FILES = {"C": "clarity.md", "S": "slop.md", "U": "usage.md"}
-HEADING = re.compile(r"^### ([CSU])(\d+) — (.+)$", re.M)
+RULE_FILES = {
+    "C": "clarity.md",
+    "S": "slop.md",
+    "U": "usage.md",
+    "M": "method.md",
+}
+HEADING = re.compile(r"^### ([CSUM])(\d+) — (.+)$", re.M)
 rule_ids: dict[str, list[int]] = {}
 rule_sections: dict[str, dict[int, str]] = {}
 
@@ -172,10 +177,10 @@ def check_rule_ids():
         if claim not in readme:
             fail(f"README.md does not state {claim}")
         # split sections for later checks
-        parts = re.split(r"^### (?=[CSU]\d+ — )", text, flags=re.M)
+        parts = re.split(r"^### (?=[CSUM]\d+ — )", text, flags=re.M)
         secs = {}
         for part in parts[1:]:
-            m = re.match(r"([CSU])(\d+) — ", part)
+            m = re.match(r"([CSUM])(\d+) — ", part)
             if m:
                 secs[int(m.group(2))] = part
         rule_sections[prefix] = secs
@@ -185,9 +190,9 @@ def check_rule_ids():
 
 # ------------------------------------------------- 4 test / fix / exception
 
-@section("every C and S rule has Test, Fix, Exception")
+@section("every C, S and M rule has Test, Fix, Exception")
 def check_rule_parts():
-    for prefix in ("C", "S"):
+    for prefix in ("C", "S", "M"):
         for n, body in rule_sections.get(prefix, {}).items():
             for part in ("**Test:**", "**Fix:**", "**Exception:**"):
                 if part not in body:
@@ -196,7 +201,7 @@ def check_rule_parts():
 
 # ------------------------------------------------------- 5 citations exist
 
-CITE = re.compile(r"(?<![A-Za-z0-9/+.-])([CSU])(\d{1,2})(?![A-Za-z0-9])")
+CITE = re.compile(r"(?<![A-Za-z0-9/+.-])([CSUM])(\d{1,2})(?![A-Za-z0-9])")
 
 
 def strip_fences(text: str) -> str:

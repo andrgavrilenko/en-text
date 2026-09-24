@@ -21,8 +21,9 @@ in the conversation. If $ARGUMENTS names a file or a glob, read those files.
 
 Find a directory named `references` whose parent directory is named `en-text`. It
 sits next to this skill, typically at `../en-text/references/`. Read `scoring.md`
-first; it governs everything below. Read `slop.md` for the density table, and
-`clarity.md` and `usage.md` as needed to identify what you are counting.
+first; it governs everything below. Read `slop.md` for the density table,
+`method.md` before you trust a count, and `clarity.md` and `usage.md` as needed to
+identify what you are counting.
 
 If the corpus is missing, say so and stop. A number produced from memory is not an
 en-text score.
@@ -69,5 +70,8 @@ Cheapest 2 points: rewrite the bullet list as prose and fix the empty verbs.
   lands can score 10.
 - **State your assumptions** (genre, weights, spelling variant, house style) in the
   line above the score. They change the number, so the reader must see them.
+- **Score the text you can actually see.** A rendering may have dropped content that
+  the source contains (`M2`); missing material is a gap in your copy, not a fault in
+  the writing. Say which artifact you scored.
 - **Never edit the file.** This skill reports; it does not rewrite. If the user
   wants the text fixed, point them at `en-check`.
