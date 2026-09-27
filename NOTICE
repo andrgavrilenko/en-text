@@ -2,30 +2,44 @@ en-text
 Copyright (c) 2026 Andrey Gavrilenko
 Licensed under the MIT License.
 
-This corpus restates, in its own words, writing advice developed by others.
-Ideas and principles are not copyrightable; no passage from any book cited in
-skills/en-text/references/sources.md is reproduced here.
+Much of this corpus restates, in its own words, writing advice developed by
+others. Ideas and principles are not copyrightable; no passage from any book
+cited in skills/en-text/references/sources.md is reproduced here.
 
-The following openly licensed works contributed conventions to this corpus and
-are attributed as their licences require:
+The following openly licensed works contributed conventions to this corpus.
+Two of their licenses require attribution: CC BY 4.0 (item 3) and the Open
+Government Licence v3.0 (item 4), and both are attributed below as those
+licenses ask. Items 1 and 2 are public domain in the United States, with a
+worldwide CC0 1.0 waiver; they require no attribution and are credited as a
+courtesy.
 
-1. Federal Plain Language Guidelines; plainlanguage.gov
+1. Federal Plain Language Guidelines (plainlanguage.gov)
    Plain Language Action and Information Network (PLAIN) and the U.S. General
-   Services Administration. Public domain / CC0 1.0 Universal.
-   https://www.plainlanguage.gov/
+   Services Administration. A U.S. Government work: public domain in the United
+   States (17 U.S.C. 105), with a worldwide CC0 1.0 Universal waiver.
+   Archived source: https://github.com/GSA/plainlanguage.gov
+   plainlanguage.gov now redirects to https://digital.gov/guides/plain-language
 
 2. 18F Content Guide
-   U.S. General Services Administration. Public domain (17 U.S.C. 105).
-   https://content-guide.18f.gov/
+   U.S. General Services Administration (18F). A U.S. Government work: public
+   domain in the United States (17 U.S.C. 105), with a worldwide CC0 1.0
+   Universal waiver.
+   Archived source: https://github.com/18F/content-guide
 
 3. Google developer documentation style guide
-   Copyright Google LLC. Licensed under CC BY 4.0.
-   https://developers.google.com/style
+   Copyright Google LLC. Licensed under the Creative Commons Attribution 4.0
+   International License (CC BY 4.0):
+   https://creativecommons.org/licenses/by/4.0/
+   Source: https://developers.google.com/style
    Changes: conventions were summarized and reworded; no text is reproduced.
 
-4. GOV.UK style guide
-   Crown copyright. Licensed under the Open Government Licence v3.0.
-   https://www.gov.uk/guidance/style-guide
+4. GOV.UK style guide (A to Z style guide)
+   Government Digital Service. Crown copyright.
+   Contains public sector information licensed under the Open Government
+   Licence v3.0.
+   License: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+   Source: https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/style-guides/a-to-z-style-guide/
+   Changes: conventions were summarized and reworded; no text is reproduced.
 
 No code from Vale, proselint, write-good, alex, stop-slop, or ru-text is
 included in this project.

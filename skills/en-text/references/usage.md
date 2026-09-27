@@ -3,13 +3,19 @@
 Rules `U1`–`U28`. Load this file when proofreading, or when a specific mark, number,
 or capital is in question.
 
-Two conventions govern the whole file:
+The rules answer two kinds of question. Some have a right answer: a comma alone does
+not join two sentences (`U2`); a plural takes no apostrophe (`U6`); a restrictive
+clause takes no commas (`U11`); countable things take `fewer` (`U13`); and `affect`
+is not `effect` (`U14`). Others are conventions, where style guides disagree and
+each option is defensible: the serial comma, dash spacing, US or UK spelling, and
+heading case. Two principles govern the whole file:
 
 - **A house style beats this file.** If the project has a style guide, follow it and
-  say so. Where none exists, these are sane defaults drawn from the sources in
-  `sources.md`.
-- **Consistency beats correctness** for anything genuinely optional (serial comma,
-  US vs UK spelling, heading case). Pick what the document already does and hold it.
+  say so (`M3`). Where none exists, these rules are the defaults, drawn from the
+  sources in `sources.md`.
+- **Consistency beats correctness** for any choice this file leaves open. No option
+  is wrong there, so the only finding is a mix: pick what the document already does
+  and hold it.
 
 ---
 
@@ -39,21 +45,31 @@ them want to be periods.
 
 ### U4 — Colon
 
-The half before the colon must be a complete sentence. The half after explains,
-lists, or delivers it.
+In running text, the part before a colon should be a complete clause. The part after
+explains, lists, or delivers it.
 
 - Wrong: `The tools we use are: Vale, Git, and Make.`
 - Right: `We use three tools: Vale, Git, and Make.`
 
+Labels and lead-ins are exempt: field labels, such as this corpus's own `**Test:**`,
+`**Fix:**`, and `**Exception:**`; list and table labels (`**Speed**: ...`,
+`Note:`); headings; and a short lead-in to a vertical list (`You need:` above the
+bullets).
+
 ### U5 — Em dash, en dash, hyphen
 
 - **Hyphen** (`-`): compound modifiers (`well-known problem`), prefixes where needed.
-- **En dash** (`–`): ranges (`2019–2024`, `pages 10–14`) and relationships
-  (`client–server`).
+- **En dash** (`–`): ranges (`2019–2024`, `pages 10–14`), although some technical
+  styles use a hyphen for them (`U21`). For a relationship between two equal terms,
+  styles split between the en dash (`client–server`) and the hyphen
+  (`client-server`).
 - **Em dash** (`—`): a break in thought, an aside, an interruption.
 
-US style closes em dashes up (`word—word`); UK style often spaces them (`word – word`
-with an en dash). Pick one and hold it.
+Dash spacing is a house choice. AP spaces the em dash (`word — word`), Chicago
+closes it up (`word—word`), and UK style often uses a spaced en dash in its place
+(`word – word`). Any of the three is fine when held consistently. A single dash
+cannot be inconsistent with itself, so a document with one dash gives no spacing
+finding.
 
 See `S21` for the frequency problem and the social-media caveat.
 
@@ -90,9 +106,15 @@ writer hoped so.
 
 ### U10 — Ellipsis
 
-Use for omitted text in a quotation, or for a genuine trailing off. Not as a general
-pause. Set as a single character (`…`) or three spaced periods per house style, not
-four or five dots.
+Use it for omitted text in a quotation, or for a genuine trailing off, not as a
+general pause. Set it as a single character (`…`) or as three spaced periods, per
+house style.
+
+When the omission follows a grammatically complete sentence, that sentence keeps its
+period and the ellipsis comes after it, four dots in all:
+`The tests passed. . . . We shipped anyway.` Chicago and AP both work this way. Five
+dots are never right, and neither are four after text that is not a complete
+sentence.
 
 ---
 
@@ -109,10 +131,13 @@ an aside): `, which`, with a comma.
 UK usage permits restrictive `which`. In technical writing the distinction is worth
 keeping anyway: it is load-bearing.
 
-### U12 — Which vs who
+### U12 — Who vs that
 
-People take `who`. Organizations take `that` or `which` in US style, `who` when
-acting as a group of people in UK style.
+`That` for people (`the engineer that wrote it`) is standard English;
+Merriam-Webster and Garner both accept it. `Who` is a preference, not a rule: change
+`that` to `who` only under a house style that asks for it, as AP and APA do.
+Organizations take `that` or `which` in US usage; UK usage often takes `who` when
+the organization acts as a group of people (`the committee, who are divided`).
 
 ### U13 — Fewer vs less
 
@@ -124,9 +149,12 @@ amounts: `less than 5 ms`.
 
 `affect` (verb) / `effect` (noun, usually); `comprise` (the whole comprises the
 parts) / `compose`; `principal` (chief) / `principle` (rule); `complement` /
-`compliment`; `discreet` / `discrete`; `ensure` (make certain) / `insure`
-(indemnify) / `assure` (tell someone); `i.e.` (that is) / `e.g.` (for example);
-`imply` (speaker) / `infer` (listener).
+`compliment`; `discreet` / `discrete`; `ensure` (make certain) / `insure` (cover
+with insurance) / `assure` (tell someone, to remove a doubt); `i.e.` (that is) /
+`e.g.` (for example); `imply` (speaker) / `infer` (listener).
+
+US dictionaries also give `insure` the sense of making certain. Some usage guides
+keep it for insurance, so treat that choice as house style rather than as an error.
 
 ### U15 — Latin abbreviations
 
@@ -143,20 +171,24 @@ proximity`, `added bonus`, `free gift`, `new innovation`, `completely eliminate`
 
 Cut one half of each.
 
-### U17 — Clichés and dead metaphors
+### U17 — Clichés and worn-out metaphors
 
 `low-hanging fruit`, `move the needle`, `boil the ocean`, `circle back`, `think
 outside the box`, `paradigm shift`, `perfect storm`, `tip of the iceberg`, `the
 elephant in the room`, `at the end of the day`, `take it to the next level`.
 
-A dead metaphor costs the reader nothing to parse and gives nothing back. Replace
-with the literal claim.
+A worn-out metaphor no longer calls up a picture. The reader skims past it at no
+cost and gets nothing from it. Replace it with the literal claim. A metaphor so old
+that it is now the ordinary word for the thing (`bottleneck`, `deadline`, `bug`) is
+not a finding.
 
 ### U18 — Inclusive and neutral wording
 
-Default to the singular `they` for a person of unknown gender. Prefer role-neutral
-terms (`chair`, `firefighter`, `workforce`). In technical writing prefer
-`allowlist` / `blocklist`, `primary` / `replica`, `placeholder`.
+Default to the singular `they` for a person of unknown gender. AP accepts it only
+where other wording would be awkward, so under AP reword first: make the noun
+plural, or drop the pronoun. Prefer role-neutral terms (`chair`, `firefighter`,
+`workforce`). In technical writing prefer `allowlist` / `blocklist`, `primary` /
+`replica`, `placeholder`.
 
 Say `people with disabilities` or follow the community's own stated preference; do
 not invent euphemisms. Avoid `crazy`, `insane`, `lame`, `blind to`, `tone-deaf` as
@@ -170,9 +202,10 @@ casual intensifiers.
 
 General prose: spell out zero through nine, use numerals from 10 up. Technical and
 scientific writing: numerals for anything measured, including single digits
-(`3 retries`, `5 ms`).
+(`5 ms`, `2 GB`).
 
-Never start a sentence with a numeral. Rewrite or spell it out.
+Do not start a sentence with a numeral. Rewrite it, or spell the number out. Some
+styles let a calendar year open a sentence (`2025 was a quiet year`).
 
 ### U20 — Units and spacing
 
@@ -182,9 +215,16 @@ up in most styles (`$40`, `20°C` or `20 °C` per house rule).
 
 ### U21 — Large numbers and ranges
 
-Use a comma as the thousands separator in US/UK English (`1,048,576`). In ranges,
-repeat enough digits to be unambiguous (`1990–1995`, not `1990–95`, in technical
-text). Use an en dash, not a hyphen (`U5`).
+General US and UK prose separates thousands with a comma (`1,048,576`). SI style
+groups the digits in threes with a small space and never with a comma
+(`1 048 576`), so a document that follows SI units (`U20`) may follow SI grouping
+too.
+
+In a range, give the second number in full wherever a shortened one could be
+misread (`1898–1901`, never `1898–901`). Shortening a range of years within one
+century (`1990–95`) is fine where the house style allows it. Many styles set ranges
+with an en dash (`U5`); others, Google's developer documentation style among them,
+use a hyphen. Whichever the document uses, hold it.
 
 ### U22 — Dates
 
@@ -196,8 +236,15 @@ audience.
 ### U23 — Capitalization of headings
 
 Two acceptable systems: sentence case (`Getting started with the API`) and title
-case (`Getting Started With the API`). Sentence case is the modern default in
-technical documentation and is easier to keep consistent. Choose once per document.
+case (`Getting Started with the API`; AP and APA capitalize any word of four or more
+letters, so `With`). Sentence case is the modern default in technical documentation
+and is easier to keep consistent.
+
+Choose one system per document, and count the page title (the H1) as a heading like
+any other. A title-case page title above sentence-case sections is a mix; the
+pattern that describes it (title case for the title only) does not make it
+consistent (`M4`). Only a written house style that sets page titles apart overrides
+this (`M3`).
 
 ### U24 — Capitalization of terms
 
@@ -217,8 +264,8 @@ should make sense read on their own as a table of contents.
 
 ### U26 — Lists
 
-Use a list when the items are genuinely parallel and the order is either meaningful
-or irrelevant. Do not use a list for a two-item sequence that is a sentence.
+Use a list when the items are parallel and the order is either meaningful or
+irrelevant. Do not use a list for a two-item sequence that is a sentence.
 
 Punctuate consistently: either every item is a fragment with no terminal period, or
 every item is a full sentence with one. Do not mix. Keep items grammatically
@@ -233,5 +280,9 @@ bare URL in running prose. Never link a whole sentence.
 
 `US` (`color`, `organize`, `analyze`, `defense`) or `UK`/`Commonwealth` (`colour`,
 `organise` or `organize`, `analyse`, `defence`). Detect which the document already
-uses and match it; flag mixtures. When there is no signal, default to US spelling
-for software documentation, since most of the surrounding ecosystem uses it.
+uses and match it; flag mixtures, including a mix that follows a pattern, such as
+one variant in the body and the other in the captions (`M4`). Proper names and
+quoted text keep their own spelling: `Labour Party` in a US document,
+`World Health Organization` in a UK one. When there is no signal, default to US
+spelling for software documentation, since the code, APIs, and other documentation
+around it mostly use US spelling.

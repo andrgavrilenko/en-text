@@ -4,3 +4,4 @@ Thumbs.db
 .vale.ini
 styles/
 node_modules/
+__pycache__/
