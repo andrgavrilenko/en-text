@@ -110,8 +110,8 @@ Count one instance for each of these:
 - a chain of three or more prepositions (`C5`)
 - a passive that hides an actor the reader needs (`C6`)
 - a sentence whose first seven or eight words are wind-up (`C7`)
-- a sentence over 35 words that stacks its clauses, or a run of short sentences that
-  hammers (`C14`)
+- a sentence over 35 words that makes the reader hold more than two clauses at once
+  before the main verb, or a run of short sentences that hammers (`C14`)
 - a subject held far from its verb (`C15`)
 - a subordinate clause of more than about ten words before the main clause (`C16`),
   unless it carries old information and is the only one in its paragraph

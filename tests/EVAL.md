@@ -135,9 +135,10 @@ almost nothing.
 | At most two findings of any kind | If a run reports more, the corpus is over-triggering. |
 
 **Score band:** 9.0–10.0 with default weights. Human voice 9 or higher. `en-score`
-should say that no finding costs half a point; any finding it does name counts
-toward the two above. A score below the band means the corpus is grading a voice as
-a defect.
+usually prints `No finding costs half a point.` A run that names one or two findings
+still passes, provided none comes from a must-not row and the total stays in the
+band; any finding it does name counts toward the two above. A score below the band
+means the corpus is grading a voice as a defect.
 
 ## `fixtures/04-mixed-conventions.md` — correctness only
 
