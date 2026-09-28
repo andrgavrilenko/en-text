@@ -394,3 +394,53 @@ Left open: `S15` on the structural-slop case, and the two single misses on fixtu
 05, rest on one run each. The spread on a dense middling text is still near the
 0.1.3 level. Whether a text that fails badly in one dimension should score lower
 overall is a calibration question for a later version.
+
+### 2026-09-28, corpus 0.2.0, first run of the real mechanism
+
+Every earlier round emulated the skills: an agent read `SKILL.md` and substituted
+`$ARGUMENTS` and `${CLAUDE_SKILL_DIR}` by hand. This round ran them through Claude
+Code itself — the plugin loaded from the working tree with `--plugin-dir`, the
+installed 0.1.3 disabled through `--settings`, `context: fork`, real argument
+substitution and real tool denial. The skills ran on Sonnet (`--model sonnet`), each
+on a copy of its fixture under a neutral name, outside the repo.
+
+One caveat: `--bare` reads credentials only from `ANTHROPIC_API_KEY`, so these runs
+could not use it, and the maintainer's global `CLAUDE.md` loaded with them. It
+changed nothing observable: every run that met the single em dash cleared it under
+`S21`'s threshold, and none produced a public-post note.
+
+| Case | Skill | Result | Verdict |
+|---|---|---|---|
+| 03-clean-human, before the fix below | en-score ×4 | 9.9, 9.9, 10.0, 10.0. Two runs named `C14` on the 38-word sentence, which this file lists as must not report; two cleared it under the rule's exception | fail ×2 |
+| 03-clean-human, after it | en-score ×3 | 10.0, 9.6, 10.0. Sentence clarity counts nothing in all three. One run named `C9` on the same sentence, reading its tail as administrative detail | pass |
+| 04-mixed-conventions | en-check ×4 | `U1`, `U2` ×2, `U15`, `U23`, `U28` in three runs, identical. The first run missed `U1` and found the rest | pass ×3, fail ×1 |
+| pasted paragraph, no path | en-check | Reviewed the text without reaching for a file; 8 weighted tells in 35 words, read raw under the floor; marked the gap rather than inventing a figure | pass |
+| no argument at all | en-check | One line asking for the text or a path, then stop. No attempt to invent a target | pass |
+| `C23` probe, a landing page written for this round | en-check | Both planted defects: a count over a list, and a `Buy Pro` button under a free-trial sentence. Cleared the control pair (a 14-day trial beside a 30-day refund window) under `C23`'s own exception | pass |
+
+What the mechanism settled, which no emulated run could:
+
+- **`B1` is closed in the mechanism, not only in the documentation.** The
+  no-argument call behaves exactly as `SKILL.md` promises.
+- **The corpus is read from the loaded folder.** One run printed the path it read;
+  the `C23` runs prove it independently, since `C23` exists only in 0.2.0 and the
+  installed 0.1.3 contains it nowhere.
+- **Nothing is written.** After five runs, one of which proposed replacements
+  throughout, the repo was clean and both reviewed copies were byte-identical to
+  their originals.
+
+What failed, and what came of it:
+
+- `C14` on fixture 03, twice in four runs. The cause was a drift between
+  `clarity.md`, whose test turns on load before the main verb, and `scoring.md`,
+  whose count list had shortened it to "stacks its clauses". `scoring.md` now
+  carries the criterion, and the three runs after the change count nothing in
+  Sentence clarity. `check_corpus.py` could not have caught this: both wordings
+  cited a rule that exists.
+- `U1` on fixture 04, once in four runs. The three repeats named the full
+  must-report set with no variation, so this reads as ordinary variance rather than
+  a corpus problem. The run that missed it quoted the sentence carrying the defect
+  inside a `U2` finding without noticing the comma.
+
+Repeatability: the seven runs on fixture 03 spread 0.4 (9.6 to 10.0). Left open: the
+`C9` reading of that 38-word sentence, on one run.
