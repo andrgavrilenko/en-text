@@ -4,7 +4,9 @@ description: >
   Gives English prose a score from 0.0 to 10.0, built from counted problems in five
   areas: sentence clarity, flow and cohesion, human voice, correctness, and
   precision for the reader.
-  Triggers: score this, rate this text, how good is this writing, how much does this read like AI, en-score.
+  Triggers: score this, rate this text, how good is this writing, score how much this reads like AI, en-score.
+  Route by the language of the text, not of the request: English text comes here
+  even when the request is written in another language.
   Returns the number, the count behind each part of it, and up to three rules that
   cost the most. Pass the text, or a path to a file, as the argument; the skill runs
   apart from the conversation and sees only what it is given. It never edits a file.
@@ -48,9 +50,12 @@ and say in the frame line what was left out.
 
 ## The corpus
 
-Read the corpus from `${CLAUDE_SKILL_DIR}/../en-text/references/`. When that path
-leads nowhere, for example because the host did not expand the variable, look for
-the corpus by name: a folder called `references` directly inside a folder called
+Read the corpus from `${CLAUDE_PLUGIN_ROOT}/skills/en-text/references/`. When that
+path leads nowhere, try `${CLAUDE_SKILL_DIR}/../en-text/references/`, passed to Read
+or Glob exactly as written, `..` included: the tools resolve it, and shortening it by
+hand has sent runs to a folder that does not exist. When neither path leads anywhere,
+for example because the host did not expand the variables, look for the corpus by
+name: a folder called `references` directly inside a folder called
 `en-text`. With more than one match, use the copy installed under the same version as
 this skill, and read every file from that one folder.
 

@@ -105,8 +105,8 @@ reader.
 Count one instance for each of these:
 
 - an actor kept out of the subject slot (`C1`)
-- an action frozen in a noun (`C2`, `C3`); an empty verb and the noun it carries are
-  one `C4` instance
+- an action frozen in a noun (`C2`, `C3`), once per noun whichever of the two names
+  it; an empty verb and the noun it carries are one `C4` instance
 - a chain of three or more prepositions (`C5`)
 - a passive that hides an actor the reader needs (`C6`)
 - a sentence whose first seven or eight words are wind-up (`C7`)
@@ -117,6 +117,18 @@ Count one instance for each of these:
   unless it carries old information and is the only one in its paragraph
 - a phrase about the text rather than its subject (`C17`)
 - a hedge that is social padding (`C18`)
+
+Where these rules meet in one sentence, count the rewrites, not the rules. When the
+subject slot holds a nominalization and the actor sits in a by-phrase or nowhere,
+putting the actor in the subject also thaws that noun and any empty verb carrying
+it: that is one `C1` instance, and the noun is not counted again under `C2`, `C3`,
+or `C4`. `A review of the logs was carried out by the on-call engineer` is one
+instance, because `The on-call engineer reviewed the logs` fixes all of it. The
+merge takes only the subject noun and the verb carrying it. After it, list every
+other noun in the sentence that hides an action: each needs a rewrite of its own
+and counts on its own. So does any other rule the sentence breaks, such as a
+wind-up opening (`C7`), a subject held far from its verb (`C15`), or a passive that
+hides a second actor (`C6`).
 
 | Instances per 300 words | Score | What the reader meets |
 |---|---|---|
@@ -152,11 +164,21 @@ Count one instance for each of these:
 
 ## 3. Human voice
 
-Count exactly as "How to use this file" in `slop.md` describes: what one tell is, the
-double weight of `S14`–`S20`, `S21` as one tell for the whole document once its own
-threshold is met, and the 150-word floor. The rate is the density from `slop.md`, and
-the rows are its bands. Clusters decide what to show first and never change the
-count.
+A tell is an occurrence, not a rule. Count one tell for each of these:
+
+- each listed word or phrase, every time it occurs: `leverage`, `unlock`, `empower`,
+  and `navigating` in one text are four `S1` tells, not one
+- each occurrence of any other rule's shape, such as a self-answered question or a
+  bolded-label list
+- each pattern that exists only across the whole document (`S15`, `S17`, `S20`,
+  `S22`, `S23`), once for the document
+- `S21`, once for the document, when its own threshold is met
+
+Then weight and read the count as "How to use this file" in `slop.md` says: `S14`–`S20`
+count double, one fix that removes two tells counts once, and the 150-word floor
+holds. Before converting, check the list of document-level rules: a missed `S15` costs
+two tells. The rate is the density from `slop.md`, and the rows are its bands.
+Clusters decide what to show first and never change the count.
 
 | Density in `slop.md` | Score |
 |---|---|

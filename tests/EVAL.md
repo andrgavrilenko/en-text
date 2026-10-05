@@ -20,7 +20,10 @@ example `blind/a/post.md`), because these file names give the answer away, and d
 not show the agent this file.
 
 **How the numbers here were counted.** Words are counted in running prose: every
-line except headings, quoted lines, table rows and code. A word is a
+line except headings, quoted lines, table rows and code. A heading is a line that
+opens with `#`, or a title standing alone on the first line with no closing
+punctuation, such as "Memorandum: Q3 incident review"; a reader takes both as
+headings, and every recorded run has counted them so. A word is a
 whitespace-separated token with at least one letter or digit, so `first-time` is one
 word and a bullet marker or a spaced dash is none. A sentence ends at `.`, `?` or `!`
 before a space, at a paragraph break, and at the end of a list item; a colon, a
@@ -83,7 +86,8 @@ count as errors.
 ## `fixtures/02-official-style.md` — clean of slop, unreadable anyway
 
 An incident memo in the Official Style: every action is a nominalization, every
-actor is in a by-phrase or absent. 160 words, counting the one-line title. Contains
+actor is in a by-phrase or absent. 156 words; the one-line title is a heading and is
+not counted. Contains
 no word from the S1 or S2 lists. Tests whether the clarity rules fire when the slop
 rules have nothing to say, which is the case the anti-slop tools miss.
 
@@ -110,7 +114,7 @@ rules have nothing to say, which is the case the anti-slop tools miss.
 
 **Score band:** 6.5–8.5 with default weights. Sentence clarity 0–4. Human voice
 7–10: with `S4` on neither frame the memo reads as Human, and with `S4` on both it
-has 2 tells in 160 words, 3.8 per 300, which is Suspicious. The gap between the two
+has 2 tells in 156 words, 3.8 per 300, which is Suspicious. The gap between the two
 sub-scores is the point of the fixture.
 
 ## `fixtures/03-clean-human.md` — a voice that must survive
@@ -444,3 +448,54 @@ What failed, and what came of it:
 
 Repeatability: the seven runs on fixture 03 spread 0.4 (9.6 to 10.0). Left open: the
 `C9` reading of that 38-word sentence, on one run.
+
+Later the same day, after the release, the same mechanism ran nine more times on the
+three fixtures the round above had not touched. These runs are what 0.3.0 was built
+from.
+
+| Case | Skill | Result | Verdict |
+|---|---|---|---|
+| 01-slop-heavy | en-check | Unmistakable, 15 weighted tells read raw under the floor; all 10 must-report rules, and the rewrite invents no figure | pass |
+| 01-slop-heavy | en-score | 5.7, Human voice 3.1 on 11 weighted tells. `S1` counted once for four words and `S15` lost, the miscount this file's band predicts in brackets | fail |
+| 02-official-style | en-check | `C1`, `C4` ×2, `C6`, `C15`, `C17` ×2. `C3` and `C7` missing: the run describes the nominalizations inside its `C1` and `C4` explanations but never files them under `C3` | fail |
+| 02-official-style | en-score ×3 | 6.8, 6.8, 6.5 on 17, 17 and 16 Sentence clarity instances | pass ×3 |
+| 05-flattened-rendering | en-check ×2 | `M1` and `M2` held in both, and both found the tool-count `C23`. Neither named the `C23` on the "Start free trial" button; the second also missed `U2` | fail ×2 |
+| 05-flattened-rendering | en-score | 9.4 with the rendering caveat, Flow provisional, `C23` named | pass |
+
+The spread on fixture 02 fell from 1.1 to 0.3, but that is weaker news than it looks:
+above 30 instances per 300 words Sentence clarity sits at 0.0, so a disagreement over
+how many instances a sentence holds no longer shows in the total. The fixes for all
+four failures, and the reruns that test them, are recorded in the next entry.
+
+### 2026-10-01 to 2026-10-05, corpus 0.3.0, acceptance of the fixes
+
+The same mechanism as on 2026-09-28: the plugin loaded from the working tree with
+`--plugin-dir`, the installed copy disabled, the skills on Sonnet, each run on a copy
+of its fixture under a neutral name outside the repo. The runs went in three rounds,
+and the corpus changed between them; each round re-ran what the last change touched.
+No total is capped: the score stays the weighted sum of the five sub-scores shown.
+
+| Case | Skill | Result | Verdict |
+|---|---|---|---|
+| 01-slop-heavy | en-score ×3 | 4.7, 4.6, 4.5. Human voice 0.0 in all three, on 16, 22 and 18 weighted tells; each listed word now counts every time | pass ×3 |
+| 02-official-style, round 1 | en-score ×3 | Sentence clarity counts of 7, 12 and 12: the merge of `C1` with its subject noun swallowed other frozen actions in the same sentence | fail |
+| 02-official-style, round 2 | en-score ×3 | 7.4, 6.5, 6.9 on 14, 16 and 13 Sentence clarity instances, after the merge was limited to the subject noun and its verb | pass ×3 |
+| 02-official-style, round 2 | en-check ×3 | `C1`, `C3`, `C4`, `C6`, `C15`, `C17` in at least two runs; `C7` in one | fail |
+| 02-official-style, round 3 | en-check ×3 | All seven must-report rules in all three runs, `C7` reported beside `C1`. No `C6` on "no customer data was affected" | pass ×3 |
+| 03-clean-human, rounds 2 and 3 | en-check ×6 | No finding in any run | pass ×6 |
+| 04-mixed-conventions, round 2 | en-check ×3 | `U1` in two of three | fail |
+| 04-mixed-conventions, round 3 | en-check ×3 | `U1`, `U2` ×2, `U23`, `U28` as a mix in all three. No run settled on US spelling, so `U15` was not due | pass ×3 |
+| 05-flattened-rendering, round 1 | en-check ×3 | One run asserted the Webhook Relay gap as a `C13` fact instead of something to verify | fail ×1 |
+| 05-flattened-rendering, rounds 2 and 3 | en-check ×6 | `M1` and `M2` held in all six, the tool-count `C23` found in all six, Webhook Relay under TO VERIFY every time. The button `C23` in one run of three in each round, and `U2` likewise | partial |
+| `C23` probe, round 3 | en-check | Both planted defects, and the 14-day trial beside the 30-day refund window cleared under the exception | pass |
+
+Routing on the new descriptions, with 32 requests put to two Sonnet classifiers, was
+32/32 for both; the requests and the answers are kept outside the repo.
+
+What is still open is fixture 05's button. Across three rounds the quiet pair, "Get
+the Team plan for 30 days" above "Start free trial" with a billing toggle higher up,
+was named in 2, 1 and 1 runs of three, and no change to the instructions moved it.
+The blunt case in the probe is found every time. The runs that miss the quiet one
+read "Start free trial" as agreeing with "30 days", which is a judgment the rule
+leaves open rather than a step the run skipped, so the next fix belongs in the
+rule's exception or its example, not in the procedure.

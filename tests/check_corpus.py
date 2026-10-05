@@ -481,7 +481,7 @@ def tell_list(prefix_num: str) -> list[str]:
     out = []
     for t in toks:
         t = re.sub(r"\s*\(.*?\)\s*$", "", t).strip()
-        if t and " " not in t or len(t.split()) <= 3:
+        if t and len(t.split()) <= 3:
             out.append(t.lower())
     return out
 

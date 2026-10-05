@@ -4,7 +4,7 @@ description: >
   English text quality. Triggers: edit this, proofread, tighten this up, make this
   sound human, does this read like AI, en-text. Catches AI slop, buried subjects,
   nominalizations, and hedging. Applies on request; light cleanup on any English
-  draft the agent writes.
+  draft the agent writes. Route by the language of the text, not of the request.
 ---
 
 # en-text — English text quality

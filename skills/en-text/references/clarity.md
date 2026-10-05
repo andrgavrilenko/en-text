@@ -412,12 +412,20 @@ words.
 
 A fact stated in two places must have the same value in both.
 
-**Test:** List every count, amount, date, limit, and offer the document states, with
-each place it appears. Pair two places only when they describe the same thing: the
-same subject and the same measure. Does any of them take two values? Does every count over a
-list match the list? Does every button or link label promise what the sentence
-beside it says? A `Buy Pro` button under `Try Pro free for 14 days` leaves the
-reader unsure whether the click charges them.
+**Test:** Run both steps; the second is easy to skip once the first has found
+something.
+
+1. List every count, amount, date, limit, and offer the document states, with each
+   place it appears. Pair two places only when they describe the same thing: the
+   same subject and the same measure. Does any of them take two values? Does every
+   count over a list match the list?
+2. List every button and link label, each with the sentence nearest to it and any
+   control that sets its terms, such as a billing toggle. For each pair ask: does
+   the label promise what the sentence says, and can the reader tell whether the
+   click costs money? A `Buy Pro` button under `Try Pro free for 14 days` fails
+   plainly. So does a quieter pair: `Try it free` under `Access every course for 7
+   days`, below an Annual/Monthly switch, where the sentence never says the 7 days
+   cost nothing and the switch implies the click starts a subscription.
 
 **Fix:** Make them agree. When the text does not say which version is right, ask the
 author rather than choose. Once the author confirms that all four steps belong, the

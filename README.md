@@ -49,7 +49,8 @@ PowerShell, Monitor), and a slash command that hands them the text as an argumen
 Another agent can read and follow their instructions, but there "never edits a file"
 is an instruction the agent is asked to obey, and nothing enforces it. Keep the three
 skill folders together: the two commands read the corpus from
-`../en-text/references/`.
+`skills/en-text/references/` under the plugin root, or from `../en-text/references/`
+beside their own folders.
 
 ## Use
 

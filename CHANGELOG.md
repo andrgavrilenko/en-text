@@ -5,6 +5,74 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-10-01
+
+The first runs of 0.2.0 through Claude Code's own skill mechanism, recorded in
+`tests/EVAL.md` under 2026-09-28, found one counting defect in `en-score` and a
+pattern of misses in `en-check`: the corpus overlooked defects rather than inventing
+them. This release fixes the count, makes `en-check` search for what it tended to
+miss, and closes two routing gaps.
+
+Every fix was accepted by live runs, recorded in `tests/EVAL.md` under 2026-10-01
+to 2026-10-05: fixture 01 now scores 4.5 to 4.7 with Human voice at 0.0, fixture 02
+holds its Sentence clarity counts within 3 of each other, `en-check` names every
+must-report rule on fixtures 02 and 04 in three runs of three, the clean fixture 03
+drew no finding in six runs, and routing went 32/32 with two classifiers. Total
+scores stay uncapped: a text that fails one dimension badly still scores the
+weighted sum of the five numbers it shows.
+
+One thing did not close. On fixture 05, `en-check` names the quiet mismatch between
+"Get the Team plan for 30 days" and a "Start free trial" button in one run of three,
+and a comma splice on the same page likewise. The blunt version of the button case is
+caught every time.
+
+### Fixed
+
+- **Human voice counted rules, not occurrences.** On the slop-heavy fixture
+  `en-score` counted `S1` once for four listed words and lost `S15`, scoring Human
+  voice 3.1 against a band of 0 to 2. Every other dimension in `scoring.md` restates
+  what one instance is; Human voice only pointed to `slop.md`. It now says it
+  outright: each listed word counts every time it occurs, and a pattern that exists
+  only across the document (`S15`, `S17`, `S20`, `S22`, `S23`) counts once.
+- **One heavy sentence could count as three clarity instances.** A nominalized
+  subject with its actor in a by-phrase is one `C1` instance, not also a `C3` and a
+  `C4`, because one rewrite fixes all of it. Every other frozen action in the
+  sentence still counts on its own. A noun is counted once whichever of `C2` and `C3`
+  names it.
+- **`en-check` filed one finding inside another.** Runs described nominalizations
+  inside a `C1` explanation without ever reporting `C3`. A problem named while
+  explaining a finding is now reported under its own ID, and when `C1` or `C4` fires,
+  the whole text is tested for `C3`, `C6` and `C7`, and a wind-up opening on a
+  nominalized subject is reported as `C7` beside the `C1` finding, not inside it. A
+  closing sweep collects each usage convention across the document, since a mix
+  shows only when all its instances sit side by side; for the serial comma it lists
+  every series of three or more, including one inside a sentence that already
+  carries another finding. It then reads every comma that joins two clauses (`U2`).
+  The sweep skips anything read from a flattened table, which stays under `M2`.
+- **`C23` missed buttons.** The pairing of a button or link label with the sentence
+  beside it lived in one clause of the test and was skipped once the count half had
+  found something. It is now a step of its own in `clarity.md`, which also reads any
+  control that sets the click's terms, such as a billing toggle, and `en-check` runs
+  it on every pricing or offer page even after the count step has found a defect.
+- **The corpus path.** The commands now read the corpus from
+  `${CLAUDE_PLUGIN_ROOT}/skills/en-text/references/` first, and fall back to
+  `${CLAUDE_SKILL_DIR}/../en-text/references/` passed to the tools as written, then
+  to the search by folder name. One run in eighteen reported the relative path missing
+  and reached the corpus only through that search.
+- **Routing.** All three descriptions say that the language of the text decides, not
+  the language of the request. The `en-score` trigger is now "score how much this
+  reads like AI", so that it no longer collides with the `en-text` and `en-check`
+  trigger "does this read like AI".
+- `check_corpus.py`: an operator-precedence slip in the tell-list parser could pass
+  an empty string on.
+
+### Changed
+
+- `tests/EVAL.md` says what counts as a heading for its word counts: a line opening
+  with `#`, or a title alone on the first line with no closing punctuation. Fixture
+  02 is 156 words by that convention, not 160.
+- `tests/EVAL.md` records the nine runs of 2026-09-28 that this release answers.
+
 ## [0.2.0] - 2026-09-27
 
 This release answers the pre-publication test of 2026-09-26, recorded in

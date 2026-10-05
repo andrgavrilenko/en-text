@@ -4,6 +4,8 @@ description: >
   Reviews English prose against every rule in the en-text corpus and lists what
   it finds.
   Triggers: proofread, edit this, review this text, tighten this, does this read like AI, en-check.
+  Route by the language of the text, not of the request: English text comes here
+  even when the request is written in another language.
   For explicit requests to proofread, edit, or review English writing, and for
   project gates that require an en-text pass. Pass the text, or a path to a file,
   as the argument: the review runs in a separate context and cannot see the
@@ -49,13 +51,16 @@ mixed-language text, review the English and leave the rest as it is.
 
 ## The corpus
 
-The rules live with the base skill, in `${CLAUDE_SKILL_DIR}/../en-text/references/`.
+The rules live with the base skill, in `${CLAUDE_PLUGIN_ROOT}/skills/en-text/references/`.
 Read `clarity.md`, `slop.md`, `usage.md`, and `method.md` from that folder, and
 `scoring.md` too when the request also asks for a score.
 
-If that path does not lead to a real folder, for instance because the host left the
-variable in it unexpanded, search for a folder called `references` inside a folder
-called `en-text`. Several hits usually mean several installed versions: take the one
+If that path does not lead to a real folder, try
+`${CLAUDE_SKILL_DIR}/../en-text/references/`. Pass it to Read or Glob exactly as
+written, `..` included: the tools resolve it, and shortening it by hand has sent runs
+to a folder that does not exist. If neither path leads to a real folder, for instance
+because the host left the variables unexpanded, search for a folder called
+`references` inside a folder called `en-text`. Several hits usually mean several installed versions: take the one
 under the same version folder as this skill, and never combine files from two
 versions.
 
@@ -126,9 +131,36 @@ instead), a proposed replacement, and one sentence on what is wrong.
 Let the genre decide where to look hardest. In a policy, terms, a contract, or any
 text that grants permissions, test every passive that gives, limits, or removes
 access or rights for its actor (`C6`); a party named elsewhere for a different act
-does not count as named. On a pricing, product, or offer page, set side by side
-every count, price, limit, date, and offer the page states more than once,
-including a button or link label against the sentence beside it (`C23`).
+does not count as named. On a pricing, product, or offer page, run both steps of
+`C23`'s test. First set side by side every count, price, limit, date, and offer the
+page states more than once. Then, as a separate step even when the first has already
+found something, take each button and link label in turn, with the sentence nearest
+to it and any control above it that sets its terms, and ask whether the reader can
+tell what the click promises and whether it costs money.
+
+Some rules fire together, and the one found first tends to swallow the rest. A
+problem you mention while explaining a finding is a finding under its own rule: a
+hidden actor named inside a `C4` finding is also `C6`, a nominalization named inside
+a `C1` finding is also `C3`. Report each under its own ID. When `C1` or `C4` fires
+anywhere, test the whole text for `C3`, `C6`, and `C7` as rules of their own; `C3`
+lists every noun that hides an action, except one an empty verb already carries as
+`C4`. A sentence that opens on a nominalized subject usually breaks `C7` too: when
+its first seven or eight words name neither the actor nor the main action, report
+`C7` on that sentence beside the `C1` finding, not inside it.
+
+Before closing the pass, sweep the usage conventions one at a time: spelling variant,
+serial comma, heading case, `e.g.` and `i.e.` punctuation, dash style, number style.
+Collect every instance of each across the document, because a mix shows only when
+all of them sit side by side (`M4`, `U1`, `U15`, `U23`, `U28`). For the serial comma,
+list every series of three or more items joined by `and` or `or`, wherever it sits,
+including inside a sentence already carrying another finding, and note for each
+whether a comma precedes the conjunction (`U1`). Then read every comma
+that joins two clauses and ask whether each side could stand as a sentence (`U2`).
+In a rendering, skip anything read from a flattened table: a shape that breaks there
+is something to verify in the source (`M2`), never a finding.
+
+These searches raise recall, never the bar: a span still needs a rule's test to
+catch it and its exception not to clear it.
 
 A proposed replacement keeps every claim and adds none. Where the text needs a
 figure, a name, or an example it does not give, mark the gap for the writer instead
