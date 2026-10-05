@@ -7,7 +7,10 @@ What is checked:
   1. Plugin manifests parse, and their versions agree with the changelog.
   2. Every skill has valid frontmatter; the review skills cannot write files,
      touch git or a shell, or drive Monitor (Write, Edit, NotebookEdit, Bash,
-     PowerShell, Monitor all disallowed).
+     PowerShell, Monitor all disallowed), and cannot reach the network, start
+     another agent or skill, send a message, or call an MCP server (WebFetch,
+     WebSearch, Agent, Task, Skill, SendMessage, the MCP resource tools and
+     mcp__* all disallowed).
   3. Rule IDs in each reference file are sequential and unique, and the
      counts match what SKILL.md and README claim.
   4. Every clarity (C), slop (S) and method (M) rule has a Test, a Fix, and
@@ -125,13 +128,19 @@ def frontmatter(text: str) -> dict:
 # every one of them as a bare entry.
 WRITE_TOOLS = ("Write", "Edit", "NotebookEdit", "Bash", "PowerShell", "Monitor")
 
+# Tools a text under review could use to carry data out or act elsewhere: the
+# network, another agent or skill, messages, and every MCP server. A forked
+# skill inherits all of them from the session unless it denies them.
+REACH_TOOLS = ("WebFetch", "WebSearch", "Agent", "Task", "Skill", "SendMessage",
+               "ListMcpResourcesTool", "ReadMcpResourceTool", "mcp__*")
+
 
 def tool_entries(value: str) -> list[str]:
     """Split a frontmatter tool list into its comma-separated entries."""
     return [e.strip() for e in value.split(",") if e.strip()]
 
 
-@section("skill frontmatter valid; review skills cannot write")
+@section("frontmatter valid; review skills cannot write or reach out")
 def check_frontmatter():
     for d in sorted(SKILLS.iterdir()):
         if not d.is_dir():
@@ -161,7 +170,7 @@ def check_frontmatter():
                 if any(e == bad or e.startswith(bad + "(") for e in allowed):
                     fail(f"{d.name}: allowed-tools must not include {bad}")
             disallowed = tool_entries(fm.get("disallowed-tools", ""))
-            for must in WRITE_TOOLS:
+            for must in WRITE_TOOLS + REACH_TOOLS:
                 if must not in disallowed:
                     fail(f"{d.name}: disallowed-tools must list {must} as a bare "
                          f"entry (a scoped {must}(...) entry does not block it)")

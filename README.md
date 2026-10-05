@@ -43,9 +43,12 @@ Works in Claude Code (CLI and desktop app).
 Only the base skill, `skills/en-text`, carries over to other agents as it is: it is
 plain markdown with no runtime, and any agent that reads `SKILL.md` files can follow
 it and its `references/` folder. `en-check` and `en-score` rely on three Claude Code
-features: a forked context, a `disallowed-tools` list that takes away six built-in
-tools able to write files or run commands (Write, Edit, NotebookEdit, Bash,
-PowerShell, Monitor), and a slash command that hands them the text as an argument.
+features: a forked context, a `disallowed-tools` list, and a slash command that
+hands them the text as an argument. The list takes away every tool that could write
+a file, run a command, reach the network, start another agent or skill, send a
+message, or call an MCP server, so a text that tells its reviewer to mail out a key
+file has nothing to do it with. Reading stays open, because the skills must read the
+text and the corpus; that they read nothing else is an instruction, not a barrier.
 Another agent can read and follow their instructions, but there "never edits a file"
 is an instruction the agent is asked to obey, and nothing enforces it. Keep the three
 skill folders together: the two commands read the corpus from
@@ -171,7 +174,8 @@ The corpus is prose, but its structure is checked by machine.
 1. The plugin manifests parse, and their versions match each other and the top
    entry in `CHANGELOG.md`.
 2. Every skill has valid frontmatter, and `en-check` and `en-score` run in a forked
-   context with the file-writing and shell tools disallowed.
+   context with the file-writing, shell, network, agent, messaging, and MCP tools
+   disallowed.
 3. Rule IDs in each reference file run in sequence with no duplicates, and the ID
    ranges stated in each file's header, the base skill, and README, along with
    README's rule total, match the files.
