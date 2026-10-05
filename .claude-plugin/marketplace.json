@@ -2,7 +2,7 @@
   "name": "en-text",
   "metadata": {
     "description": "English text quality for AI agents — AI-slop cleanup, clarity, sentence mechanics, usage, editorial standards. Scores text 0-10.",
-    "version": "0.3.3"
+    "version": "0.3.4"
   },
   "owner": {
     "name": "Andrey Gavrilenko",
@@ -13,11 +13,18 @@
       "name": "en-text",
       "displayName": "en-text",
       "source": "./",
-      "version": "0.3.3",
-      "description": "English text quality for AI agents — AI-slop cleanup, clarity, sentence mechanics, usage, editorial standards. Scores text 0-10. Every finding cites the rule behind it.",
+      "version": "0.3.4",
+      "description": "English text quality for AI agents: 75 rules, each with an ID, covering clarity, AI slop, and usage, plus four rules for how a review is run. The en-check skill lists findings with rule IDs and proposed replacements, and never edits your file. The en-score skill gives a 0-10 score built from counts of problems in five dimensions. Slop is judged by density per 300 words, not by a banned-word list, and 51 rules state where they stop applying, so a human voice survives the review. Neither en-check nor en-score can write files, reach the network, or call MCP servers, so an instruction hidden in a reviewed text has no way to send anything out. Each release is tested through Claude Code, and the results, failures included, are in tests/EVAL.md.",
       "category": "productivity",
       "homepage": "https://github.com/andrgavrilenko/en-text",
-      "tags": ["english", "ai-slop", "writing", "editing", "plain-language", "text-quality"]
+      "tags": [
+        "english",
+        "ai-slop",
+        "writing",
+        "editing",
+        "plain-language",
+        "text-quality"
+      ]
     }
   ]
 }

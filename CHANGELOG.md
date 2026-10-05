@@ -5,6 +5,15 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.4] - 2026-10-05
+
+### Changed
+
+- The plugin description in `plugin.json` and `marketplace.json` now gives the full
+  picture the directory listing shows: rule counts with IDs, what each command
+  returns, density over word lists, the exceptions that keep a human voice, the
+  tools the review skills deny, and where the test record lives.
+
 ## [0.3.3] - 2026-10-05
 
 ### Added
