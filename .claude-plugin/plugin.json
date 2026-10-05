@@ -1,7 +1,7 @@
 {
   "name": "en-text",
   "displayName": "en-text",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "English text quality for AI agents — AI-slop cleanup, clarity, sentence mechanics, usage, editorial standards. Scores text 0-10. Every finding cites the rule behind it.",
   "author": {
     "name": "Andrey Gavrilenko",
@@ -9,6 +9,9 @@
   },
   "homepage": "https://github.com/andrgavrilenko/en-text",
   "repository": "https://github.com/andrgavrilenko/en-text",
+  "documentationUrl": "https://github.com/andrgavrilenko/en-text#readme",
+  "supportUrl": "https://github.com/andrgavrilenko/en-text/issues",
+  "privacyPolicyUrl": "https://github.com/andrgavrilenko/en-text/blob/main/PRIVACY.md",
   "license": "MIT",
   "keywords": [
     "english",

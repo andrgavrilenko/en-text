@@ -5,6 +5,17 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.3] - 2026-10-05
+
+### Added
+
+- `PRIVACY.md`: the plugin collects, stores, and sends nothing, and runs no code of
+  its own.
+- `documentationUrl`, `supportUrl`, and `privacyPolicyUrl` in `plugin.json`, which
+  the plugin directory reads for the listing's links. Claude Code itself ignores
+  these three fields, so `claude plugin validate --strict` now reports them as
+  unknown; without `--strict` validation passes.
+
 ## [0.3.2] - 2026-10-05
 
 ### Added
